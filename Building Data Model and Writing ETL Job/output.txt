@@ -1,0 +1,12 @@
+Starting to read territories files!
+territories table loaded successfully!
+Starting to read product_subcategories files!
+product_subcategories table loaded successfully!
+Starting to read customers files!
+customers table loaded successfully!
+Starting to read products files!
+products table loaded successfully!
+Starting to read sales files!
+sales table loaded successfully!
+Starting to read sales files!
+sales table loaded successfully!

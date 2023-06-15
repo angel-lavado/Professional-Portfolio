@@ -1,0 +1,20 @@
+{
+    "database": {
+      "host": "localhost",
+      "port": "5432",
+      "database": "raw_inventory",
+      "user": "postgres",
+      "password": "postgres"
+    },
+    "file_path": "C:/Users/angel/Desktop/DE PROJECTS/Professional-Portfolio/Building Data Model and Writing ETL Job/data",
+    "loading_order": ["territories", "product_subcategories", "customers", "products", "sales"],
+    "tables": {
+      "sales": "(OrderDate DATE, StockDate DATE, OrderNumber VARCHAR PRIMARY KEY, ProductKey INT REFERENCES Products(ProductKey), CustomerKey INT REFERENCES Customers(CustomerKey), TerritoryKey INT REFERENCES Territories(SalesTerritoryKey), OrderLineItem INT, OrderQuantity INT)",
+      "products": "(ProductKey INT PRIMARY KEY, ProductSubcategoryKey INT REFERENCES Product_Subcategories(ProductSubcategoryKey), ProductSKU VARCHAR, ProductName VARCHAR, ModelName VARCHAR, ProductDescription VARCHAR, ProductColor VARCHAR, ProductSize VARCHAR, ProductStyle VARCHAR, ProductCost NUMERIC(10,2), ProductPrice NUMERIC(10,2))",
+      "territories": "(SalesTerritoryKey INT PRIMARY KEY, Region VARCHAR, Country VARCHAR, Continent VARCHAR)",
+      "customers": "(CustomerKey INT PRIMARY KEY, Prefix VARCHAR, FirstName VARCHAR, LastName VARCHAR, BirthDate DATE, MaritalStatus CHAR(3), Gender CHAR(3), EmailAddress VARCHAR, AnnualIncome VARCHAR, TotalChildren INT, EducationLevel VARCHAR, Occupation VARCHAR, HomeOwner CHAR(3))",
+      "product_subcategories": "(ProductSubcategoryKey INT PRIMARY KEY, SubcategoryName VARCHAR, ProductCategoryKey INT)",
+      "controlfilesloaded": "(FileName VARCHAR, TableName VARCHAR, TimeLoaded TIMESTAMP)"
+    }
+  }
+  
