@@ -1,0 +1,27 @@
+Etapa 1: Generacion y envio a Pubsub
+
+Descripcion:
+Crear un script .py en un VM de Compute Engine
+El script .py simulara el envio de streaming data y lo publicara a un topico de Pub/Sub.
+
+
+Preguntas:
+
+(1) ¿Que servicio deberia ejecutar el script de python que simula la generacion y hace el envio a pubsub?
+Puedes ejecutar el script en una máquina local, en una instancia de Google Compute Engine (VM), o en un entorno de ejecución en la nube como Google Cloud Run o Google Kubernetes Engine (GKE), 
+según tus necesidades. El servicio que elijas dependerá de la escalabilidad que requieras y de dónde deseas que se ejecute el script.
+
+(2) ¿Cual es la mejor practica para utilizar cuentas de servicio en un script de python?
+
+Usar Variables de Entorno: Configura la variable de entorno GOOGLE_APPLICATION_CREDENTIALS en el entorno donde se ejecuta el script 
+para que apunte a la ubicación del archivo JSON de clave de cuenta de servicio. Esto permite que las bibliotecas de Google Cloud utilicen automáticamente las credenciales.
+
+# Set your Google Cloud credentials environment variable
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "path_to_your_service_account_key.json"
+
+El archivo JSON puede estar almacenado en los siguiente lugares:
+
+Google Cloud Secret Manager: Google Cloud Secret Manager es un servicio completamente administrado que te permite almacenar, gestionar y acceder de manera segura a secretos, como claves de cuenta de servicio. Puedes almacenar tus archivos JSON de claves en Secret Manager y luego acceder a ellos en tus aplicaciones cuando sea necesario.
+Google Cloud Storage: Puedes almacenar los archivos JSON de claves en Google Cloud Storage en un bucket con acceso restringido. Asegúrate de configurar los permisos de acceso adecuadamente para limitar quién puede acceder a estos archivos.
+En Variables de Entorno Seguras: Si bien no es la opción más recomendada, puedes almacenar las claves como contenido de variables de entorno en el entorno de ejecución, pero debes asegurarte de que estas variables sean administradas y protegidas adecuadamente.
+Localmente en Entorno Controlado: Si es absolutamente necesario, puedes almacenar una copia segura del archivo JSON de claves en una ubicación local en un entorno controlado y seguro, como una máquina física con acceso limitado y medidas de seguridad.
